@@ -17,7 +17,6 @@ export const Login = () => {
   return (
     <Form
       name="normal_login"
-      className="login-form"
       initialValues={{
         remember: true,
       }}
@@ -66,7 +65,7 @@ export const Login = () => {
         <Button
           type="primary"
           htmlType="submit"
-          className="login-form-button"
+          className="bg-[#1677ff]"
           loading={isLoadingBtn}
         >
           Log in
