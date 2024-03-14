@@ -68,21 +68,21 @@ export const LayoutAdmin = memo(({ children }) => {
   const defaultSelectedKey = handleGetKey[0].key;
   const handleBreadcrumb = () => {
     // const route = Routes.find((route) => route.path === location.pathname);
-    const route = Routes.map((route) => {
-      if (route.children) {
-        return
-      } else {
-        Routes.find((route) => route.path === location.pathname);
-      }
-    });
-    const path = route.path;
-    const name = (
-      <div>
-        {route.icon}
-        <span> {route.name} </span>
-      </div>
-    );
-    return { href: path, title: name };
+    // const route = Routes.map((route) => {
+    //   if (route.children) {
+    //     return
+    //   } else {
+    //     Routes.find((route) => route.path === location.pathname);
+    //   }
+    // });
+    // const path = route.path;
+    // const name = (
+    //   <div>
+    //     {route.icon}
+    //     <span> {route.name} </span>
+    //   </div>
+    // );
+    return { href: "path", title: "name" };
   };
 
   const breadcrumb = handleBreadcrumb();
