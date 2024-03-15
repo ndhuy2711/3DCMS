@@ -4,7 +4,6 @@ import { useAddPreset } from ".";
 import { getCookies } from "../../../../Cache";
 export const AddPreset = ({
   dataGetBusiness,
-  preset,
   openDrawerAddPreset,
   setOpenDrawerAddPreset,
 }) => {
@@ -51,9 +50,7 @@ export const AddPreset = ({
             scales: null,
             presetRotation: null,
             presetPosition: null,
-            businessId:
-            dataGetBusiness.data.data[0].attributes
-                .businessId,
+            businessId: dataGetBusiness.data.data[0].attributes.businessId,
           }}
           onFinish={handleAddPreset}
         >

@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Login } from "../page/auth";
 import { Home } from "../page/home";
 import { LayoutAdmin } from "../layout";
+import { BusinessInfomation } from "../page/business";
 import {
   HomeOutlined,
   TeamOutlined,
@@ -30,14 +31,31 @@ export const Routes = [
         path: "",
         name: "Business",
         icon: <TeamOutlined />,
-        element: <div>business</div>,
+        element: (
+          <LayoutAdmin>
+            <div>List business to handle fc with business</div>
+          </LayoutAdmin>
+        ),
+      },
+      {
+        key: "business",
+        path: ":id",
+        element: (
+          <LayoutAdmin>
+            <BusinessInfomation />
+          </LayoutAdmin>
+        ),
       },
       {
         key: "product",
         path: "product",
         name: "Product",
         icon: <ProductOutlined />,
-        element: <div>product</div>,
+        element: (
+          <LayoutAdmin>
+            <div>List business to handle fc with product</div>
+          </LayoutAdmin>
+        ),
       },
       {
         key: "preset",
@@ -46,7 +64,7 @@ export const Routes = [
         icon: <ApartmentOutlined />,
         element: (
           <LayoutAdmin>
-            <Home />
+            <div>List business to show preset</div>
           </LayoutAdmin>
         ),
       },

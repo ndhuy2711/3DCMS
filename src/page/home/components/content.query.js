@@ -4,7 +4,7 @@ import { getCookies } from "../../../Cache";
 import { fetchGetBussinessAPI } from "../api";
 export const useGetBussiness = (businessId) => {
   const { jwt } = getCookies();
-  const { isLoading, isSuccess, isError, data } = useQuery({
+  const { isLoading, isSuccess, isError, data, refetch } = useQuery({
     queryKey: ["getBusiness"],
     queryFn: useCallback(
       () => fetchGetBussinessAPI({ businessId, jwt }),
@@ -20,5 +20,6 @@ export const useGetBussiness = (businessId) => {
     isSuccess,
     isError,
     data,
+    refetch
   };
 };

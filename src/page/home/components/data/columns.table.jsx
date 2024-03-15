@@ -1,5 +1,6 @@
 import { Button, Space, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { ButtonPreset } from "../";
 export const columns = [
   {
@@ -9,16 +10,21 @@ export const columns = [
     fixed: "left",
     width: 250,
     align: "center",
-    render: (text) => (
-      <Button type="text">
-        <Space direction="vertical" size={16}>
-          <Space wrap size={16}>
-            <Avatar size="large" src={text.image} icon={<UserOutlined />} />
-            {text.name}
-          </Space>
-        </Space>
-      </Button>
-    ),
+    render: (text) => {
+      const id = text.businessId;
+      return (
+        <Link to={"/business/" + id}>
+          <Button type="text">
+            <Space direction="vertical" size={16}>
+              <Space wrap size={16}>
+                <Avatar size="large" src={text.image} icon={<UserOutlined />} />
+                {text.name}
+              </Space>
+            </Space>
+          </Button>
+        </Link>
+      );
+    },
   },
   {
     title: "Client ID number",

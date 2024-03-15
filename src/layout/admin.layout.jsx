@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { Layout, Menu, theme, Breadcrumb } from "antd";
-import { useUser } from ".";
+import { Layout, Menu, theme } from "antd";
+import { useUser, BreadcrumbComponent, logout } from ".";
 import { Skeleton, Button } from "antd";
 import { Routes } from "../route";
 import { useLocation, matchPath, Link } from "react-router-dom";
@@ -66,26 +66,6 @@ export const LayoutAdmin = memo(({ children }) => {
     }
   }).filter((IsArrRoute) => IsArrRoute !== undefined);
   const defaultSelectedKey = handleGetKey[0].key;
-  const handleBreadcrumb = () => {
-    // const route = Routes.find((route) => route.path === location.pathname);
-    // const route = Routes.map((route) => {
-    //   if (route.children) {
-    //     return
-    //   } else {
-    //     Routes.find((route) => route.path === location.pathname);
-    //   }
-    // });
-    // const path = route.path;
-    // const name = (
-    //   <div>
-    //     {route.icon}
-    //     <span> {route.name} </span>
-    //   </div>
-    // );
-    return { href: "path", title: "name" };
-  };
-
-  const breadcrumb = handleBreadcrumb();
   return (
     <div>
       {isLoading && <Skeleton active />}
@@ -119,10 +99,10 @@ export const LayoutAdmin = memo(({ children }) => {
             >
               <div className="h-[inherit] flex items-center ml-6">
                 <div>
-                  <Breadcrumb separator="/" items={[breadcrumb]} />
+                  <BreadcrumbComponent routeArr={Routes}/>
                 </div>
                 <div className="absolute right-5">
-                  <Button type="text" danger className="flex items-center">
+                  <Button type="text" danger className="flex items-center" onClick={() => logout()}>
                     <LogoutOutlined />
                     Logout
                   </Button>

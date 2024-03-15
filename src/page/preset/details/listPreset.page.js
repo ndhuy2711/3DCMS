@@ -1,26 +1,22 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Skeleton, Descriptions, Button, Col, Row, Image, Table } from "antd";
 import avatar from "../../../assets/images/utils/avatar.jpg";
 import { presetConstants } from "../";
 import { CodepenOutlined } from "@ant-design/icons";
-import {
-  useGetPreset,
-  useGetBusiness,
-  columns,
-  listDataPreset,
-  AddPreset,
-} from ".";
-
+import { useGetPreset, columns, listDataPreset, AddPreset } from ".";
+import { useGetBussiness } from "../../home";
 export const ListPreset = memo(() => {
+  const [openDrawerAddPreset, setOpenDrawerAddPreset] = useState(false);
   const { id } = useParams();
   const { isLoading, isSuccess, isError, data } = useGetPreset(id);
   const {
-    isLoadingGetBusiness,
-    isSuccessGetBusiness,
-    isErrorGetBusiness,
-    dataGetBusiness,
-  } = useGetBusiness(id);
+    isLoading: isLoadingGetBusiness,
+    isSuccess: isSuccessGetBusiness,
+    isError: isErrorGetBusiness,
+    data: dataGetBusiness,
+    refetch: refetchGetBusiness,
+  } = useGetBussiness(id);
   const preset = data;
   // Xử lí phân trang
   const [tableParams, setTableParams] = useState({
@@ -35,10 +31,14 @@ export const ListPreset = memo(() => {
       pagination,
     });
   };
-  const [openDrawerAddPreset, setOpenDrawerAddPreset] = useState(false);
+
+  useEffect(() => {
+    refetchGetBusiness();
+  }, []);
   return (
     <div>
-      {isLoading && isLoadingGetBusiness && <Skeleton active />}
+      {isLoading && <Skeleton active />}
+      {isLoadingGetBusiness && <Skeleton active />}
       {isError && <div>Error </div>}
       {isErrorGetBusiness && <div>isErrorGetBusiness </div>}
       {isSuccess && isSuccessGetBusiness && (

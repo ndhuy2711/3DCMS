@@ -6,6 +6,7 @@ export const listDataBusiness = ({ data }) => {
       {
         key: element.id,
         name: {
+          businessId: element.attributes.businessId,
           name: element.attributes.Name,
           image: element.attributes.avatar.data.attributes.url,
         },
